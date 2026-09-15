@@ -1,0 +1,151 @@
+"use client";
+import React from "react";
+import { motion } from "framer-motion";
+import { Check } from "lucide-react";
+import { asset } from "@/lib/site";
+import { useLead } from "@/components/ui/ModalProvider";
+
+const plans = [
+  {
+    name: "Стадия П",
+    tagline: "Для экспертизы и разрешения.",
+    price: "от 200",
+    unit: "₽/м²",
+    isPopular: false,
+    features: ["ПОЛНЫЙ СОСТАВ ПО ПП №87", "ПРОВЕРКА ИСХОДНЫХ ДАННЫХ", "СОПРОВОЖДЕНИЕ ЭКСПЕРТИЗЫ", "ОТВЕТЫ НА ЗАМЕЧАНИЯ ЗА 3 ДНЯ", "ГИП НА СВЯЗИ", "СДАЧА КАЖДЫЕ 14 ДНЕЙ"],
+  },
+  {
+    name: "П + Р",
+    tagline: "Проект, по которому строят.",
+    price: "от 350",
+    unit: "₽/м²",
+    isPopular: true,
+    features: ["ВСЁ ИЗ «СТАДИЯ П»", "РАБОЧАЯ ДОКУМЕНТАЦИЯ ВСЕХ РАЗДЕЛОВ", "BIM-МОДЕЛЬ И ПРОВЕРКА КОЛЛИЗИЙ", "СПЕЦИФИКАЦИИ И ВЕДОМОСТИ", "СМЕТНАЯ ДОКУМЕНТАЦИЯ", "ГАРАНТИЯ ЭКСПЕРТИЗЫ В ДОГОВОРЕ"],
+  },
+  {
+    name: "Под ключ",
+    tagline: "От участка до ввода объекта.",
+    price: "По запросу",
+    unit: "",
+    isPopular: false,
+    features: ["ВСЁ ИЗ «П + Р»", "ИНЖЕНЕРНЫЕ ИЗЫСКАНИЯ", "ТУ И НАРУЖНЫЕ СЕТИ", "СОГЛАСОВАНИЯ С ВЕДОМСТВАМИ", "АВТОРСКИЙ НАДЗОР ДО ВВОДА", "ПЕРСОНАЛЬНЫЙ ГИП И SLA"],
+  },
+];
+
+function DotGridIcon() {
+  return (
+    <div className="grid grid-cols-2 gap-1">
+      {[0, 1, 2, 3].map((i) => (
+        <div key={i} className="h-1 w-1 rounded-full bg-white" />
+      ))}
+    </div>
+  );
+}
+
+export default function Pricing() {
+  const { open } = useLead();
+  return (
+    <section id="pricing" className="relative w-full overflow-hidden bg-white px-0 py-16 md:py-24">
+      <div className="relative z-10 mb-10 px-6 text-center">
+        <motion.span
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mb-4 inline-block rounded-full border border-amber/40 bg-amber/10 px-4 py-1.5 text-[12px] font-bold uppercase tracking-[0.14em] text-amber-dark"
+        >
+          Стоимость
+        </motion.span>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55 }}
+          className="font-display text-[32px] font-semibold leading-[1.04] tracking-tight text-ink md:text-[48px]"
+        >
+          Три формата. Понятные цены.
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55, delay: 0.1 }}
+          className="mt-4 text-sm text-muted md:text-base"
+        >
+          Оплата поэтапно по актам. Последние 10% — после положительного заключения экспертизы.
+        </motion.p>
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, delay: 0.15 }}
+        className="relative mx-3 max-w-[1440px] overflow-hidden rounded-[20px] shadow-2xl md:mx-10 lg:mx-auto"
+      >
+        <div className="absolute inset-0 z-0">
+          <img src={asset("/img/aerial.webp")} alt="Индустриальный парк с высоты" className="absolute inset-0 h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-navy/40" />
+        </div>
+
+        <div className="relative z-10 m-3 overflow-hidden rounded-[12px] border border-white/20 bg-white/45 backdrop-blur-xl md:m-[40px]">
+          <div className="grid grid-cols-1 divide-y divide-black/10 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+            {plans.map((plan, idx) => (
+              <motion.div
+                key={plan.name}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.25 + idx * 0.1 }}
+                className={"flex flex-col px-6 py-8 md:px-8 md:py-10 " + (plan.isPopular ? "bg-white/50" : "")}
+              >
+                <div className="border-b border-black/10 pb-8">
+                  <div className="mb-2 flex items-start justify-between">
+                    <h3 className="font-display text-2xl font-semibold text-ink">{plan.name}</h3>
+                    {plan.isPopular && (
+                      <span className="inline-flex items-center bg-amber px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-navy">
+                        Выбирают чаще
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-1 text-sm text-ink/80">{plan.tagline}</p>
+                  <div className="mt-8 flex items-baseline gap-1">
+                    <span className={"font-display font-semibold leading-none text-ink " + (plan.unit ? "text-[34px] md:text-5xl" : "text-[28px] md:text-[38px]")}>{plan.price}</span>
+                    {plan.unit && <span className="ml-1 text-xs font-medium uppercase tracking-[0.1em] text-muted">{plan.unit}</span>}
+                  </div>
+                  <button
+                    onClick={() =>
+                      open({
+                        intent: "pricing-" + plan.name,
+                        title: `Рассчитать «${plan.name}» для моего объекта`,
+                        subtitle: "Пришлём смету с разбивкой по разделам и графиком. Бесплатно, за 24 часа.",
+                        fields: ["name", "phone", "objectType", "area"],
+                        submitLabel: "Получить смету",
+                        prefill: { comment: "Формат: " + plan.name },
+                      })
+                    }
+                    className="group mt-6 flex w-full items-center justify-between rounded-full bg-navy p-1.5 text-white transition-colors hover:bg-navy-2"
+                  >
+                    <span className="flex-1 px-5 py-3 text-left text-sm font-medium">Рассчитать по объекту</span>
+                    <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-amber transition-colors group-hover:bg-amber-dark">
+                      <DotGridIcon />
+                    </span>
+                  </button>
+                </div>
+                <div className="flex flex-col gap-3 pt-8">
+                  {plan.features.map((f) => (
+                    <div key={f} className="flex items-center gap-3">
+                      <div className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-sm border border-black/10 bg-black/5">
+                        <Check className="h-2.5 w-2.5 stroke-[2.5] text-black" />
+                      </div>
+                      <span className="text-[11px] font-medium uppercase tracking-[0.08em] text-ink">{f}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
