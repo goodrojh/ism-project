@@ -57,9 +57,6 @@ export default function Calculator() {
     <section id="calculator" className="w-full bg-paper px-4 py-[80px] md:px-6 md:py-[110px]">
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 text-center">
-          <span className="mb-4 inline-block rounded-full border border-amber/40 bg-amber/10 px-4 py-1.5 text-[12px] font-bold uppercase tracking-[0.14em] text-amber-dark">
-            Калькулятор
-          </span>
           <h2 className="font-display text-[30px] font-semibold leading-[1.1] text-ink md:text-[44px]">
             Прикиньте бюджет за 30 секунд
           </h2>

@@ -19,9 +19,6 @@ export default function Cases() {
       <div className="relative mx-auto max-w-7xl">
         <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
-            <span className="mb-4 inline-block rounded-full border border-amber/40 bg-amber/10 px-4 py-1.5 text-[12px] font-bold uppercase tracking-[0.14em] text-amber">
-              Объекты
-            </span>
             <h2 className="font-display text-[32px] font-semibold leading-[1.1] md:text-5xl">
               340+ объектов. Вот несколько с цифрами
             </h2>

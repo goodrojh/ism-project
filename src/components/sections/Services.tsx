@@ -14,9 +14,6 @@ export default function Services() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
-            <span className="mb-4 inline-block rounded-full border border-amber/40 bg-amber/10 px-4 py-1.5 text-[12px] font-bold uppercase tracking-[0.14em] text-amber-dark">
-              Услуги
-            </span>
             <h2 className="font-display text-[32px] font-semibold leading-[1.1] text-ink md:text-5xl">
               Что проектируем и сколько это стоит
             </h2>

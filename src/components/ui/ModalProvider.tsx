@@ -1,7 +1,7 @@
 "use client";
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { X, Phone, Send, CheckCircle2, Paperclip, ShieldCheck } from "lucide-react";
+import { X, Phone, Send, CheckCircle2, Paperclip } from "lucide-react";
 import { SITE } from "@/lib/site";
 
 export type FieldKey = "name" | "phone" | "email" | "objectType" | "area" | "comment" | "file";
@@ -147,9 +147,6 @@ export default function ModalProvider({ children }: { children: React.ReactNode 
                 >
                   <X size={18} />
                 </button>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-amber/40 bg-amber/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-amber">
-                  <ShieldCheck size={12} /> Без предоплаты за расчёт
-                </span>
                 <h3 className="font-display mt-4 text-[22px] font-semibold leading-tight sm:text-[26px]">{cfg.title}</h3>
                 {cfg.subtitle && <p className="mt-2 text-[14px] leading-relaxed text-white/70">{cfg.subtitle}</p>}
               </div>

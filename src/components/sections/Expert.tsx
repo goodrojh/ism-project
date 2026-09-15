@@ -60,9 +60,6 @@ export default function Expert() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-          <span className="mb-4 inline-block rounded-full border border-amber/40 bg-amber/10 px-4 py-1.5 text-[12px] font-bold uppercase tracking-[0.14em] text-amber-dark">
-            Консультация ГИПа
-          </span>
           <h2 className="font-display text-[30px] font-semibold leading-[1.1] text-ink md:text-[44px]">
             Поговорите с инженером, а не с менеджером по продажам
           </h2>

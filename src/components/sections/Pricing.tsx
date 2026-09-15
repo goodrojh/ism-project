@@ -47,14 +47,6 @@ export default function Pricing() {
   return (
     <section id="pricing" className="relative w-full overflow-hidden bg-white px-0 py-16 md:py-24">
       <div className="relative z-10 mb-10 px-6 text-center">
-        <motion.span
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mb-4 inline-block rounded-full border border-amber/40 bg-amber/10 px-4 py-1.5 text-[12px] font-bold uppercase tracking-[0.14em] text-amber-dark"
-        >
-          Стоимость
-        </motion.span>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -50,9 +50,6 @@ export default function About() {
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
           <div>
-            <span className="mb-4 inline-block rounded-full border border-amber/40 bg-amber/10 px-4 py-1.5 text-[12px] font-bold uppercase tracking-[0.14em] text-amber-dark">
-              О компании
-            </span>
             <h2 className="font-display text-[30px] font-semibold leading-[1.1] text-ink md:text-[44px]">
               Проектный институт, который отвечает за результат деньгами
             </h2>

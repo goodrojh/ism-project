@@ -2,7 +2,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import { MapPinned, FileText, CheckCircle, Layers3, Stamp, HardHat } from "lucide-react";
+import { MapPinned, FileText, ClipboardCheck, Layers3, ScanSearch, CalendarClock, Stamp, HardHat, Eye } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { asset } from "@/lib/site";
 import { useLead } from "@/components/ui/ModalProvider";
 
@@ -11,6 +12,58 @@ const stepVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] } },
 };
+
+type Step = {
+  n: string;
+  term: string;
+  title: string;
+  text: string;
+  image: string;
+  alt: string;
+  items: { icon: LucideIcon; t: string; d: string }[];
+};
+
+const STEPS: Step[] = [
+  {
+    n: "01",
+    term: "5–15 дней",
+    title: "Исходные данные и изыскания",
+    text: "Проверяем ГПЗУ, ТУ, ограничения участка. Делаем топосъёмку и геологию. Составляем ТЗ так, чтобы экспертиза потом не вернула проект.",
+    image: "/img/step1.webp",
+    alt: "Инженер на участке под застройку",
+    items: [
+      { icon: MapPinned, t: "Топосъёмка и геология", d: "Аккредитованные партнёры под нашим контролем" },
+      { icon: FileText, t: "ГПЗУ и технические условия", d: "Проверяем комплектность и сроки действия" },
+      { icon: ClipboardCheck, t: "Техническое задание", d: "Составим вместе за 2–3 дня, бесплатно" },
+    ],
+  },
+  {
+    n: "02",
+    term: "30–100 дней",
+    title: "Проектирование в BIM",
+    text: "Все разделы в одной модели, проверка коллизий, промежуточные сдачи каждые 2 недели. Вы видите не «процесс идёт», а готовые разделы.",
+    image: "/img/step2.webp",
+    alt: "BIM-модель здания на мониторе",
+    items: [
+      { icon: Layers3, t: "АР, КР, ОВ, ВК, ЭОМ, СС", d: "Все разделы своими инженерами" },
+      { icon: ScanSearch, t: "Проверка коллизий", d: "Navisworks до выпуска документации" },
+      { icon: CalendarClock, t: "Сдача каждые 14 дней", d: "Поэтапно, по актам, с отчётом" },
+    ],
+  },
+  {
+    n: "03",
+    term: "30–45 дней",
+    title: "Экспертиза и стройка",
+    text: "Сами загружаем комплект, сами отвечаем на замечания. Получаете заключение и разрешение. Дальше — авторский надзор до ввода объекта.",
+    image: "/img/step3.webp",
+    alt: "Тома проектной документации",
+    items: [
+      { icon: Stamp, t: "Положительное заключение", d: "Замечания снимаем за 3 дня за свой счёт" },
+      { icon: HardHat, t: "Разрешение на строительство", d: "Комплект РД передаём подрядчику" },
+      { icon: Eye, t: "Авторский надзор", d: "Инженер на площадке до ввода" },
+    ],
+  },
+];
 
 const TIMELINE = [
   { d: "День 1", t: "Звонок ГИПа, сбор исходных данных" },
@@ -45,12 +98,12 @@ export default function HowItWorks() {
         transition={{ duration: 0.7 }}
         className="relative z-10 mb-16 flex flex-col items-center gap-4 text-center"
       >
-        <span className="inline-block rounded-full border border-amber/40 bg-amber/10 px-4 py-1.5 text-[12px] font-bold uppercase tracking-[0.14em] text-amber-dark">
-          Как работаем
-        </span>
         <h2 className="font-display max-w-3xl text-[32px] font-semibold leading-[1.1] text-ink md:text-[48px]">
           От пустого участка до разрешения на строительство — три этапа
         </h2>
+        <p className="max-w-2xl text-[16px] text-muted md:text-lg">
+          Каждый этап заканчивается конкретным результатом на руках у заказчика, а не «процессом».
+        </p>
       </motion.div>
 
       <motion.div
@@ -60,186 +113,38 @@ export default function HowItWorks() {
         viewport={{ once: true, margin: "-100px" }}
         className="relative z-10 mx-auto mb-16 grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-3"
       >
-        {/* STEP 1 */}
-        <motion.div variants={stepVariants} className="group flex cursor-default flex-col gap-6">
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
-            <img src={asset("/img/step1.webp")} alt="Инженерные изыскания на участке" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div className="absolute inset-0 flex items-center justify-center p-8">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                className="flex w-full flex-col justify-center gap-2 overflow-hidden rounded-[15px] border border-white/30 bg-white/20 p-5 shadow-2xl backdrop-blur-2xl"
-              >
-                {[
-                  { icon: MapPinned, t: "Топосъёмка и геология", d: "Аккредитованные партнёры", active: false },
-                  { icon: FileText, t: "ГПЗУ и ТУ", d: "Проверяем исходные данные", active: true },
-                  { icon: CheckCircle, t: "Техзадание", d: "Составим вместе за 2–3 дня", active: false },
-                ].map((c, i) => (
-                  <motion.div
-                    key={c.t}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 + i * 0.1 }}
-                    className={
-                      "relative flex items-center gap-2 overflow-hidden rounded-[8px] px-2.5 py-1.5 shadow-lg " +
-                      (c.active ? "z-10 border border-amber/40 bg-white" : "border border-white/40 bg-white/40 backdrop-blur-md")
-                    }
-                  >
-                    {c.active && (
-                      <motion.div
-                        animate={{ x: ["-100%", "200%"] }}
-                        transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
-                        className="pointer-events-none absolute inset-y-0 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-amber/25 to-transparent"
-                      />
-                    )}
-                    <div className={"flex h-7 w-7 shrink-0 items-center justify-center rounded-[6px] " + (c.active ? "bg-amber/15" : "bg-white/30")}>
-                      <c.icon className={"h-3.5 w-3.5 " + (c.active ? "text-amber-dark" : "text-gray-700")} />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[11px] font-bold leading-none text-ink">{c.t}</span>
-                      <span className="mt-1 text-[8px] leading-none text-gray-600">{c.d}</span>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
+        {STEPS.map((s) => (
+          <motion.div key={s.n} variants={stepVariants} className="group flex cursor-default flex-col">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
+              <img
+                src={asset(s.image)}
+                alt={s.alt}
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
             </div>
-          </div>
-          <div className="flex flex-col gap-3">
-            <span className="inline-flex w-fit rounded-full border border-amber px-3 py-1 text-xs font-bold text-amber-dark">Этап 01 · 5–15 дней</span>
-            <h3 className="font-display text-2xl font-semibold leading-tight text-ink">Исходные данные и изыскания</h3>
-            <p className="text-base leading-relaxed text-muted">
-              Проверяем ГПЗУ, ТУ, ограничения участка. Делаем топосъёмку и геологию. Составляем ТЗ так, чтобы экспертиза
-              потом не вернула проект.
-            </p>
-          </div>
-        </motion.div>
 
-        {/* STEP 2 */}
-        <motion.div variants={stepVariants} className="group flex cursor-default flex-col gap-6">
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
-            <img src={asset("/img/step2.webp")} alt="BIM-модель здания с инженерными системами" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div className="absolute inset-0 flex items-center justify-center p-8">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                className="flex w-full items-center justify-between overflow-hidden rounded-[15px] border border-white/30 bg-white/20 p-5 shadow-2xl backdrop-blur-2xl"
-              >
-                <div className="relative flex h-32 w-1/2 items-center justify-center">
-                  <div className="relative flex h-28 w-28 items-center justify-center">
-                    <motion.div
-                      animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                      className="z-10 flex h-8 w-8 items-center justify-center rounded-full bg-amber shadow-[0_0_20px_rgba(245,165,36,0.8)]"
-                    >
-                      <Layers3 className="h-4 w-4 text-navy" />
-                    </motion.div>
-                    {[1, 2, 3, 4].map((i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ opacity: 0, scale: 0.2 }}
-                        animate={{ scale: [0.2, 1.8], opacity: [0, 0.6, 0] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "easeOut", delay: i * 0.9 }}
-                        className="absolute h-full w-full rounded-full border border-white/50"
-                      />
-                    ))}
+            <div className="mt-5 flex items-baseline gap-3">
+              <span className="font-display text-[34px] font-semibold leading-none text-amber">{s.n}</span>
+              <span className="text-[12px] font-semibold uppercase tracking-[0.12em] text-muted">{s.term}</span>
+            </div>
+            <h3 className="font-display mt-3 text-2xl font-semibold leading-tight text-ink">{s.title}</h3>
+            <p className="mt-2 text-base leading-relaxed text-muted">{s.text}</p>
+
+            <div className="mt-5 divide-y divide-black/5 rounded-2xl border border-black/5 bg-paper">
+              {s.items.map((it) => (
+                <div key={it.t} className="flex items-start gap-3 px-4 py-3">
+                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-amber-dark shadow-sm">
+                    <it.icon size={15} />
+                  </div>
+                  <div>
+                    <div className="text-[13px] font-bold text-ink">{it.t}</div>
+                    <div className="text-[12px] text-muted">{it.d}</div>
                   </div>
                 </div>
-                <div className="flex flex-col items-end gap-2 pr-1">
-                  {["АР · КР", "ОВ · ВК", "ЭОМ · СС"].map((text, i) => (
-                    <motion.div
-                      key={text}
-                      initial={{ opacity: 0, x: 10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.5 + i * 0.1 }}
-                      className={
-                        "flex min-w-[85px] items-center justify-center rounded-[8px] border px-3 py-2 shadow-xl " +
-                        (i === 1 ? "border-amber bg-amber text-navy" : "border-white bg-white text-gray-800")
-                      }
-                    >
-                      <span className="text-[11px] font-bold leading-none tracking-tight">{text}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
+              ))}
             </div>
-          </div>
-          <div className="flex flex-col gap-3">
-            <span className="inline-flex w-fit rounded-full border border-amber px-3 py-1 text-xs font-bold text-amber-dark">Этап 02 · 30–100 дней</span>
-            <h3 className="font-display text-2xl font-semibold leading-tight text-ink">Проектирование в BIM</h3>
-            <p className="text-base leading-relaxed text-muted">
-              Все разделы в одной модели, проверка коллизий, промежуточные сдачи каждые 2 недели. Вы видите не «процесс
-              идёт», а готовые разделы.
-            </p>
-          </div>
-        </motion.div>
-
-        {/* STEP 3 */}
-        <motion.div variants={stepVariants} className="group flex cursor-default flex-col gap-6">
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
-            <img src={asset("/img/step3.webp")} alt="Тома проектной документации со штампами" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div className="absolute inset-0 flex items-center justify-center p-8">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                className="flex w-full flex-col justify-center gap-3 overflow-hidden rounded-[15px] border border-white/30 bg-white/20 p-5 shadow-2xl backdrop-blur-2xl"
-              >
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 }}
-                  className="relative flex items-center gap-3 overflow-hidden rounded-[8px] border border-white bg-white p-2.5 shadow-xl"
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-amber/15">
-                    <Stamp className="h-5 w-5 text-amber-dark" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-[11px] font-bold leading-none text-ink">Заключение экспертизы</span>
-                    <span className="mt-1 text-[9px] leading-none text-emerald-600">Положительное · 38 дней</span>
-                  </div>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.55 }}
-                  className="flex items-center gap-3 rounded-[8px] border border-white bg-white/80 p-2.5 shadow-lg backdrop-blur-md"
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-cyan/15">
-                    <HardHat className="h-5 w-5 text-blue" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-[11px] font-bold leading-none text-ink">Разрешение на строительство</span>
-                    <span className="mt-1 text-[9px] leading-none text-gray-600">Комплект РД передан подрядчику</span>
-                  </div>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.7 }}
-                  className="flex w-fit items-center gap-2 rounded-[8px] border border-white bg-white px-3 py-1.5 shadow-lg"
-                >
-                  <motion.div animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 2, repeat: Infinity }} className="h-1.5 w-1.5 rounded-full bg-amber" />
-                  <span className="text-[10px] font-bold leading-none tracking-tight">Авторский надзор активен</span>
-                </motion.div>
-              </motion.div>
-            </div>
-          </div>
-          <div className="flex flex-col gap-3">
-            <span className="inline-flex w-fit rounded-full border border-amber px-3 py-1 text-xs font-bold text-amber-dark">Этап 03 · 30–45 дней</span>
-            <h3 className="font-display text-2xl font-semibold leading-tight text-ink">Экспертиза и стройка</h3>
-            <p className="text-base leading-relaxed text-muted">
-              Сами загружаем комплект, сами отвечаем на замечания. Получаете заключение и разрешение. Дальше — авторский
-              надзор до ввода объекта.
-            </p>
-          </div>
-        </motion.div>
+          </motion.div>
+        ))}
       </motion.div>
 
       {/* TIMELINE */}
