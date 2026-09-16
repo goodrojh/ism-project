@@ -10,7 +10,7 @@ import PostGrid from "@/components/blog/PostGrid";
 import { POSTS } from "@/lib/posts";
 
 export const metadata: Metadata = {
-  title: "Статьи для заказчика проектирования — ИСМ Проект",
+  title: "Статьи для заказчика проектирования — ИСМ",
   description: "Экспертиза, ТУ, BIM, состав документации, стоимость проектирования — практические материалы от инженеров проектного института.",
 };
 

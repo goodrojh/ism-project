@@ -1,19 +1,19 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Star, Quote } from "lucide-react";
-import { REVIEWS, asset } from "@/lib/site";
+import { Star, Quote, ShieldCheck, FileDown } from "lucide-react";
+import { REVIEWS, LEGAL, asset } from "@/lib/site";
 import { useLead } from "@/components/ui/ModalProvider";
 
 const NUMBERS = [
-  { v: 2009, label: "год основания", raw: true },
-  { v: 340, label: "объектов спроектировано", suffix: "+" },
-  { v: 1.9, label: "млн м² в наших проектах", dec: 1 },
-  { v: 98, label: "экспертиза с 1-го раза", suffix: "%" },
-  { v: 42, label: "инженера в штате" },
-  { v: 11, label: "регионов работы" },
-  { v: 0, label: "проектов сорвано по срокам за 3 года" },
-  { v: 24, label: "часа до сметы", suffix: "ч" },
+  { v: 2025, label: "год регистрации ООО «ИСМ»", raw: true },
+  { v: 25, label: "млн ₽ — уровень ответственности по СРО" },
+  { v: 24, label: "часа до сметы по разделам", suffix: "ч" },
+  { v: 14, label: "дней — промежуточная сдача" },
+  { v: 3, label: "дня на ответ по замечаниям экспертизы" },
+  { v: 0.1, label: "% в день — неустойка за срыв срока", dec: 1 },
+  { v: 20, label: "разделов ПД по ПП №87 своими силами", suffix: "+" },
+  { v: 1, label: "ГИП и один договор на весь объект" },
 ];
 
 function Counter({ to, dec = 0, suffix = "", raw = false }: { to: number; dec?: number; suffix?: string; raw?: boolean }) {
@@ -51,29 +51,50 @@ export default function About() {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
           <div>
             <h2 className="font-display text-[32px] font-semibold leading-[1.08] tracking-[-0.01em] text-ink md:text-[46px]">
-              Проектный институт, который отвечает за результат деньгами
+              Проектная организация, которая отвечает за результат деньгами
             </h2>
             <p className="mt-5 text-[16px] leading-relaxed text-muted md:text-lg">
-              С 2009 года проектируем промышленные, жилые и общественные объекты и инженерные сети к ним. Все ключевые
-              разделы делаем своими инженерами — поэтому за стыки между разделами отвечаем мы, а не «субподрядчик».
+              ООО «ИНЖСТРОЙМОНТАЖ» проектирует промышленные, жилые и общественные объекты и инженерные сети к ним. Все
+              ключевые разделы делаем своими инженерами — поэтому за стыки между разделами отвечаем мы, а не «субподрядчик».
             </p>
             <p className="mt-4 text-[16px] leading-relaxed text-muted md:text-lg">
-              Членство в СРО, страхование ответственности, реестр НОПРИЗ у всех ГИПов. Работаем по 44-ФЗ, 223-ФЗ и с
-              частными заказчиками.
+              Член СРО проектировщиков с правом подготовки проектной документации объектов капитального строительства.
+              Ответственность по договорам обеспечена компенсационным фондом первого уровня — до 25 млн ₽.
             </p>
+
+            <div className="mt-6 rounded-2xl border border-black/5 bg-white p-5">
+              <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-wider text-muted">
+                <ShieldCheck size={14} className="text-amber-dark" /> Членство в СРО
+              </div>
+              <div className="mt-2 text-[14px] font-semibold leading-snug text-ink">{LEGAL.sro.name}</div>
+              <dl className="mt-3 grid grid-cols-1 gap-x-6 gap-y-1.5 text-[13px] sm:grid-cols-2">
+                <div className="flex justify-between gap-3 sm:block"><dt className="text-muted">Реестровый № СРО</dt><dd className="font-semibold text-ink">{LEGAL.sro.regNumber}</dd></div>
+                <div className="flex justify-between gap-3 sm:block"><dt className="text-muted">№ члена</dt><dd className="font-semibold text-ink">{LEGAL.sro.memberNumber}</dd></div>
+                <div className="flex justify-between gap-3 sm:block"><dt className="text-muted">В реестре с</dt><dd className="font-semibold text-ink">{LEGAL.sro.since}</dd></div>
+                <div className="flex justify-between gap-3 sm:block"><dt className="text-muted">Уровень ответственности</dt><dd className="font-semibold text-ink">1-й, до 25 млн ₽</dd></div>
+              </dl>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <a href={asset(LEGAL.docs.sro)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-full border border-black/10 px-4 py-2 text-[13px] font-semibold text-ink transition hover:border-amber">
+                  <FileDown size={14} className="text-amber-dark" /> Выписка из реестра СРО (PDF)
+                </a>
+                <a href={asset(LEGAL.docs.card)} className="inline-flex items-center gap-1.5 rounded-full border border-black/10 px-4 py-2 text-[13px] font-semibold text-ink transition hover:border-amber">
+                  <FileDown size={14} className="text-amber-dark" /> Карточка предприятия (DOCX)
+                </a>
+              </div>
+            </div>
             <button
               onClick={() =>
                 open({
                   intent: "about-docs",
                   title: "Получить пакет документов компании",
-                  subtitle: "Выписка СРО, страховка, реестр ГИПов, карточка предприятия и типовой договор — одним архивом.",
+                  subtitle: "Выписка СРО, карточка предприятия, типовой договор с гарантиями и шаблон ТЗ — одним письмом.",
                   fields: ["name", "phone", "email"],
                   submitLabel: "Прислать документы",
                 })
               }
               className="mt-7 rounded-full bg-navy px-7 py-3.5 text-[15px] font-semibold text-white transition hover:bg-navy-2"
             >
-              Запросить СРО и документы
+              Запросить документы и типовой договор
             </button>
           </div>
           <motion.div
@@ -82,7 +103,7 @@ export default function About() {
             viewport={{ once: true }}
             className="relative overflow-hidden rounded-[32px] shadow-2xl"
           >
-            <img loading="lazy" decoding="async" src={asset("/img/team.webp")} alt="Команда инженеров ИСМ Проект" className="aspect-[16/11] w-full object-cover" />
+            <img loading="lazy" decoding="async" src={asset("/img/team.webp")} alt="Команда инженеров ИСМ" className="aspect-[16/11] w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-navy/70 to-transparent" />
             <div className="absolute bottom-5 left-5 right-5 flex flex-wrap gap-2">
               {["Архитекторы", "Конструкторы", "ОВ · ВК", "ЭОМ · СС", "Сметчики", "BIM-координаторы"].map((t) => (
@@ -124,9 +145,7 @@ export default function About() {
                   <Star key={i} size={16} fill="currentColor" />
                 ))}
               </div>
-              <div className="text-[13px]">
-                <span className="font-bold text-ink">4,9</span> <span className="text-muted">· 86 отзывов на Яндекс Картах</span>
-              </div>
+              <div className="text-[13px] text-muted">Отзывы заказчиков наших инженеров</div>
             </div>
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">

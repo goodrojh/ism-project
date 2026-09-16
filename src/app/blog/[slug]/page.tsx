@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = getPost(slug);
   if (!post) return {};
   return {
-    title: `${post.title} — ИСМ Проект`,
+    title: `${post.title} — ИСМ`,
     description: post.desc,
     openGraph: { title: post.title, description: post.desc, type: "article" },
   };
@@ -59,7 +59,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <div className="mt-6 flex flex-wrap items-center gap-5 text-[13px] text-white/60">
             <span className="inline-flex items-center gap-1.5"><Calendar size={14} className="text-amber" /> {formatDate(post.date)}</span>
             <span className="inline-flex items-center gap-1.5"><Clock size={14} className="text-amber" /> {post.readTime} мин чтения</span>
-            <span>Автор: Сергей Волков, ГИП</span>
+            <span>Авторы: инженеры ИСМ</span>
           </div>
         </div>
       </section>

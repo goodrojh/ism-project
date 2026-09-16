@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle2 } from "lucide-react";
-import { SITE, NAV, SERVICES, asset } from "@/lib/site";
+import { SITE, NAV, SERVICES, LEGAL, asset } from "@/lib/site";
 import Logo from "@/components/ui/Logo";
 import { formatPhone, isPhoneComplete, submitLead } from "@/lib/lead";
 import { useLead } from "@/components/ui/ModalProvider";
@@ -114,7 +114,7 @@ export default function Footer() {
             <div className="md:w-[30%]">
               <Logo />
               <p className="mt-3 max-w-[280px] text-[13px] leading-relaxed text-white/60">
-                Проектирование зданий, сооружений и инженерных сетей. Стадии П и Р, экспертиза, авторский надзор. СРО, реестр НОПРИЗ.
+                Проектирование зданий, сооружений и инженерных сетей. Стадии П и Р, экспертиза, авторский надзор. Член СРО {LEGAL.sro.regNumber}.
               </p>
               <div className="mt-4 flex flex-col gap-2 text-[13px] text-white/75">
                 <a href={SITE.phoneHref} className="flex items-center gap-2 hover:text-white"><Phone size={14} className="text-amber" /> {SITE.phone}</a>
@@ -149,7 +149,13 @@ export default function Footer() {
             <div>
               <h4 className="mb-4 text-[13px] font-semibold text-white">Документы</h4>
               <ul className="space-y-2">
-                {["Выписка СРО", "Реестр ГИПов", "Типовой договор", "Политика ПДн"].map((l) => (
+                <li>
+                  <a href={asset(LEGAL.docs.sro)} target="_blank" rel="noreferrer" className="text-[13px] text-white/60 transition-colors hover:text-white">Выписка из реестра СРО</a>
+                </li>
+                <li>
+                  <a href={asset(LEGAL.docs.card)} className="text-[13px] text-white/60 transition-colors hover:text-white">Карточка предприятия</a>
+                </li>
+                {["Типовой договор", "Политика ПДн"].map((l) => (
                   <li key={l}>
                     <button
                       onClick={() =>
@@ -165,7 +171,13 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-5 md:flex-row">
+          <div className="mt-6 border-t border-white/10 pt-5 text-[12px] leading-relaxed text-white/45">
+            {LEGAL.fullName} ({LEGAL.shortName}) · ИНН {LEGAL.inn} · КПП {LEGAL.kpp} · ОГРН {LEGAL.ogrn} · {SITE.address}
+            <br />
+            {LEGAL.sro.name}, {LEGAL.sro.regNumber}, № члена {LEGAL.sro.memberNumber}. {LEGAL.sro.liability}.
+          </div>
+
+          <div className="mt-4 flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="flex items-center gap-4">
               <span className="text-[12px] text-white/50">Мы на связи:</span>
               <div className="flex gap-3">
@@ -176,7 +188,7 @@ export default function Footer() {
                 ))}
               </div>
             </div>
-            <span className="text-[12px] text-white/40">© 2009–{new Date().getFullYear()} {SITE.name}. Все права защищены.</span>
+            <span className="text-[12px] text-white/40">© 2025–{new Date().getFullYear()} {LEGAL.shortName}. Все права защищены.</span>
           </div>
         </motion.div>
       </div>

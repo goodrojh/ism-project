@@ -18,7 +18,7 @@ export default function Expert() {
     open({
       intent: "expert-question",
       title: "Вопрос главному инженеру проекта",
-      subtitle: "Сергей Волков перезвонит лично. 20 минут разговора обычно экономят заказчику месяц.",
+      subtitle: "Главный инженер проекта перезвонит лично. 20 минут разговора обычно экономят заказчику месяц.",
       fields: ["name", "phone", "comment"],
       submitLabel: "Задать вопрос ГИПу",
       prefill: q ? { comment: q } : undefined,
@@ -35,11 +35,11 @@ export default function Expert() {
           className="relative mx-auto w-full max-w-[420px]"
         >
           <div className="relative overflow-hidden rounded-[32px] shadow-2xl">
-            <img loading="lazy" decoding="async" src={asset("/img/expert.webp")} alt="Сергей Волков, главный инженер проекта" className="aspect-[3/4] w-full object-cover" />
+            <img loading="lazy" decoding="async" src={asset("/img/expert.webp")} alt="Главный инженер проекта ИСМ" className="aspect-[3/4] w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent" />
             <div className="absolute bottom-5 left-5 right-5 text-white">
-              <div className="font-display text-[22px] font-semibold">Сергей Волков</div>
-              <div className="text-[13px] text-white/75">Главный инженер проекта · 19 лет в проектировании</div>
+              <div className="font-display text-[22px] font-semibold">Главный инженер проекта</div>
+              <div className="text-[13px] text-white/75">ООО «ИСМ» · ведёт объект от ТЗ до ввода</div>
             </div>
           </div>
           <motion.div
@@ -54,8 +54,8 @@ export default function Expert() {
             <span className="text-[12px] font-bold text-ink">Сейчас на связи</span>
           </motion.div>
           <div className="absolute -left-3 bottom-24 rounded-2xl border border-white bg-white/90 px-4 py-3 shadow-xl backdrop-blur-md md:-left-8">
-            <div className="text-[11px] uppercase tracking-wider text-muted">Объектов под руководством</div>
-            <div className="font-display text-[22px] font-semibold text-ink">120+</div>
+            <div className="text-[11px] uppercase tracking-wider text-muted">Ответ по телефону</div>
+            <div className="font-display text-[22px] font-semibold text-ink">15 мин</div>
           </div>
         </motion.div>
 
@@ -64,13 +64,13 @@ export default function Expert() {
             Поговорите с инженером, а не с менеджером по продажам
           </h2>
           <p className="mt-5 text-[16px] leading-relaxed text-muted md:text-lg">
-            Перед договором вы общаетесь с тем, кто будет вести ваш объект. Сергей скажет честно: реально ли, сколько
+            Перед договором вы общаетесь с тем, кто будет вести ваш объект. ГИП скажет честно: реально ли, сколько
             стоит и где спрятаны риски. Даже если после разговора вы выберете другого подрядчика.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             {[
-              { icon: GraduationCap, t: "МГСУ, ПГС" },
-              { icon: Award, t: "Реестр НОПРИЗ" },
+              { icon: GraduationCap, t: "Инженер-строитель, ПГС" },
+              { icon: Award, t: "Член СРО П-217" },
               { icon: Briefcase, t: "Промышленные и общественные" },
             ].map((b) => (
               <span key={b.t} className="inline-flex items-center gap-1.5 rounded-full bg-paper px-3 py-1.5 text-[12px] font-semibold text-ink">

@@ -7,10 +7,10 @@ import { useLead } from "@/components/ui/ModalProvider";
 import Header from "@/components/ui/Header";
 
 const STATS = [
-  { value: "17", label: "лет проектируем", suffix: "" },
-  { value: "340", label: "объектов сдано", suffix: "+" },
-  { value: "98", label: "экспертиза с 1-го раза", suffix: "%" },
-  { value: "24", label: "часа до сметы", suffix: "ч" },
+  { value: "24", label: "часа до сметы по разделам", suffix: "ч" },
+  { value: "14", label: "дней — цикл сдачи разделов", suffix: "" },
+  { value: "25", label: "млн ₽ — ответственность по СРО", suffix: "" },
+  { value: "0,1", label: "% в день — неустойка за срыв срока", suffix: "" },
 ];
 
 export default function Hero() {
@@ -57,7 +57,7 @@ export default function Hero() {
           className="mb-5 inline-flex flex-wrap items-center justify-center gap-2"
         >
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[12px] font-semibold text-white/85 backdrop-blur-md">
-            <Award size={13} className="text-amber" /> СРО НОПРИЗ
+            <Award size={13} className="text-amber" /> СРО П-217
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[12px] font-semibold text-white/85 backdrop-blur-md">
             <ShieldCheck size={13} className="text-amber" /> Экспертиза — по договору
