@@ -47,10 +47,10 @@ export default function About() {
   const { open } = useLead();
   return (
     <section id="about" className="w-full bg-paper px-4 py-[80px] md:px-6 md:py-[110px]">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-[1400px]">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
           <div>
-            <h2 className="font-display text-[30px] font-semibold leading-[1.1] text-ink md:text-[44px]">
+            <h2 className="font-display text-[32px] font-semibold leading-[1.08] tracking-[-0.01em] text-ink md:text-[46px]">
               Проектный институт, который отвечает за результат деньгами
             </h2>
             <p className="mt-5 text-[16px] leading-relaxed text-muted md:text-lg">

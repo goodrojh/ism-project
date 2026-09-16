@@ -4,23 +4,8 @@ import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle2 } from "lucide-react";
 import { SITE, NAV, SERVICES, asset } from "@/lib/site";
 import Logo from "@/components/ui/Logo";
+import { formatPhone, isPhoneComplete, submitLead } from "@/lib/lead";
 import { useLead } from "@/components/ui/ModalProvider";
-
-function formatPhone(v: string) {
-  const d = v.replace(/\D/g, "").slice(0, 11);
-  if (!d) return "";
-  let n = d;
-  if (n[0] === "8") n = "7" + n.slice(1);
-  if (n[0] !== "7") n = "7" + n;
-  const p = n.slice(1);
-  let out = "+7";
-  if (p.length > 0) out += " (" + p.slice(0, 3);
-  if (p.length >= 3) out += ")";
-  if (p.length > 3) out += " " + p.slice(3, 6);
-  if (p.length > 6) out += "-" + p.slice(6, 8);
-  if (p.length > 8) out += "-" + p.slice(8, 10);
-  return out;
-}
 
 export default function Footer() {
   const { open } = useLead();
@@ -29,12 +14,10 @@ export default function Footer() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (phone.replace(/\D/g, "").length < 11) return;
-    if (SITE.formEndpoint) {
-      try {
-        await fetch(SITE.formEndpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ intent: "footer-callback", phone }) });
-      } catch {}
-    }
+    if (!isPhoneComplete(phone)) return;
+    try {
+      await submitLead({ intent: "footer-callback", phone });
+    } catch {}
     setDone(true);
   };
 
@@ -146,7 +129,7 @@ export default function Footer() {
               <ul className="space-y-2">
                 {SERVICES.map((s) => (
                   <li key={s.id}>
-                    <a href="#services" className="text-[13px] text-white/60 transition-colors hover:text-white">{s.title}</a>
+                    <a href={asset("/") + "#services"} className="text-[13px] text-white/60 transition-colors hover:text-white">{s.title}</a>
                   </li>
                 ))}
               </ul>
@@ -155,9 +138,9 @@ export default function Footer() {
             <div>
               <h4 className="mb-4 text-[13px] font-semibold text-white">Навигация</h4>
               <ul className="space-y-2">
-                {NAV.map((n) => (
+                {[...NAV, { label: "Статьи", href: asset("/blog/") }].map((n) => (
                   <li key={n.href}>
-                    <a href={n.href} className="text-[13px] text-white/60 transition-colors hover:text-white">{n.label}</a>
+                    <a href={n.href.startsWith("/") ? n.href : asset("/") + n.href} className="text-[13px] text-white/60 transition-colors hover:text-white">{n.label}</a>
                   </li>
                 ))}
               </ul>

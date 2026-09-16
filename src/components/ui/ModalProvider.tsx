@@ -3,6 +3,7 @@ import React, { createContext, useCallback, useContext, useEffect, useMemo, useS
 import { AnimatePresence, motion } from "framer-motion";
 import { X, Phone, Send, CheckCircle2, Paperclip } from "lucide-react";
 import { SITE } from "@/lib/site";
+import { formatPhone, isPhoneComplete, submitLead } from "@/lib/lead";
 
 export type FieldKey = "name" | "phone" | "email" | "objectType" | "area" | "comment" | "file";
 
@@ -36,22 +37,6 @@ const OBJECT_TYPES = [
   "Реконструкция",
   "Другое",
 ];
-
-function formatPhone(v: string) {
-  const d = v.replace(/\D/g, "").slice(0, 11);
-  if (!d) return "";
-  let n = d;
-  if (n[0] === "8") n = "7" + n.slice(1);
-  if (n[0] !== "7") n = "7" + n;
-  const p = n.slice(1);
-  let out = "+7";
-  if (p.length > 0) out += " (" + p.slice(0, 3);
-  if (p.length >= 3) out += ")";
-  if (p.length > 3) out += " " + p.slice(3, 6);
-  if (p.length > 6) out += "-" + p.slice(6, 8);
-  if (p.length > 8) out += "-" + p.slice(8, 10);
-  return out;
-}
 
 export default function ModalProvider({ children }: { children: React.ReactNode }) {
   const [cfg, setCfg] = useState<LeadConfig | null>(null);
@@ -87,23 +72,14 @@ export default function ModalProvider({ children }: { children: React.ReactNode 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!cfg) return;
-    const phone = (values.phone ?? "").replace(/\D/g, "");
-    if (phone.length < 11) {
+    if (!isPhoneComplete(values.phone ?? "")) {
       setError("Введите телефон полностью — по нему перезвонит ГИП.");
       return;
     }
     setError("");
     setSending(true);
     try {
-      if (SITE.formEndpoint) {
-        await fetch(SITE.formEndpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ intent: cfg.intent, page: location.href, file: fileName, ...values }),
-        });
-      } else {
-        await new Promise((r) => setTimeout(r, 700));
-      }
+      await submitLead({ intent: cfg.intent, file: fileName, ...values });
       setDone(true);
     } catch {
       setError("Не удалось отправить. Позвоните нам: " + SITE.phone);

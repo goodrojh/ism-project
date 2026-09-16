@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { SOFTWARE } from "@/lib/site";
 import { useLead } from "@/components/ui/ModalProvider";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 const all = [...SOFTWARE, ...SOFTWARE];
 
@@ -31,32 +32,29 @@ export default function Software() {
   }, [isHovered]);
 
   return (
-    <section className="w-full overflow-hidden bg-white px-4 py-[80px] md:px-20">
-      <div className="mx-auto max-w-[1300px]">
-        <div className="mb-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-          <div className="flex-1">
-            <h2 className="font-display mb-2 text-[30px] font-semibold leading-tight text-ink md:text-[42px]">
-              Работаем в вашем ПО
-            </h2>
-            <p className="text-[15px] text-muted">
-              Отдаём модель и чертежи в том формате, в котором работает ваш подрядчик и служба эксплуатации. Российское ПО — да.
-            </p>
-          </div>
-          <button
-            onClick={() =>
-              open({
-                intent: "software-bim",
-                title: "Нужна BIM-модель для эксплуатации?",
-                subtitle: "Расскажите, в чём работает ваша служба эксплуатации — предложим формат и уровень детализации.",
-                fields: ["name", "phone", "comment"],
-                submitLabel: "Обсудить BIM",
-              })
-            }
-            className="rounded-full border border-navy bg-navy px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-navy-2"
-          >
-            Обсудить BIM-требования
-          </button>
-        </div>
+    <section className="w-full overflow-hidden bg-white px-4 py-[80px] md:px-6 md:py-[110px]">
+      <div className="mx-auto max-w-[1400px]">
+        <SectionHeading
+          align="left"
+          title="Работаем в вашем ПО"
+          text="Отдаём модель и чертежи в том формате, в котором работает ваш подрядчик и служба эксплуатации. Российское ПО — да."
+          action={
+            <button
+              onClick={() =>
+                open({
+                  intent: "software-bim",
+                  title: "Нужна BIM-модель для эксплуатации?",
+                  subtitle: "Расскажите, в чём работает ваша служба эксплуатации — предложим формат и уровень детализации.",
+                  fields: ["name", "phone", "comment"],
+                  submitLabel: "Обсудить BIM",
+                })
+              }
+              className="rounded-full border border-navy bg-navy px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-navy-2"
+            >
+              Обсудить BIM-требования
+            </button>
+          }
+        />
 
         <div className="relative">
           <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-24 bg-gradient-to-r from-white via-white/80 to-transparent md:w-32" />

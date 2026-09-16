@@ -3,6 +3,7 @@ import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Calculator as CalcIcon, Sparkles, Info } from "lucide-react";
 import { useLead } from "@/components/ui/ModalProvider";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 const TYPES = [
   { id: "industrial", label: "Промышленное / склад", rate: 350, days: 0.006 },
@@ -55,15 +56,11 @@ export default function Calculator() {
 
   return (
     <section id="calculator" className="w-full bg-paper px-4 py-[80px] md:px-6 md:py-[110px]">
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-10 text-center">
-          <h2 className="font-display text-[30px] font-semibold leading-[1.1] text-ink md:text-[44px]">
-            Прикиньте бюджет за 30 секунд
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-[15px] text-muted md:text-lg">
-            Ориентировочный расчёт по нашим средним ставкам. Точную смету с разбивкой по разделам пришлём за 24 часа.
-          </p>
-        </div>
+      <div className="mx-auto max-w-[1200px]">
+        <SectionHeading
+          title="Прикиньте бюджет за 30 секунд"
+          text="Ориентировочный расчёт по нашим средним ставкам. Точную смету с разбивкой по разделам пришлём за 24 часа."
+        />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

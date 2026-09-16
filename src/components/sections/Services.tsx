@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Building2, Wind, Cable, MapPinned, BadgeCheck, HardHat, ArrowUpRight, Check } from "lucide-react";
 import { SERVICES } from "@/lib/site";
 import { useLead } from "@/components/ui/ModalProvider";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 const ICONS = [Building2, Wind, Cable, MapPinned, BadgeCheck, HardHat];
 
@@ -11,31 +12,28 @@ export default function Services() {
   const { open } = useLead();
   return (
     <section id="services" className="relative w-full bg-paper px-4 py-[90px] md:px-6 md:py-[120px]">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
-            <h2 className="font-display text-[32px] font-semibold leading-[1.1] text-ink md:text-5xl">
-              Что проектируем и сколько это стоит
-            </h2>
-            <p className="mt-4 text-[16px] text-muted md:text-lg">
-              Цены ориентировочные — точную смету по вашему объекту присылаем за 24 часа. Без «от 1 500 ₽» и звёздочек.
-            </p>
-          </div>
-          <button
-            onClick={() =>
-              open({
-                intent: "services-all",
-                title: "Не нашли свою задачу?",
-                subtitle: "Опишите объект в двух словах — скажем, беремся ли, и сколько это стоит.",
-                fields: ["name", "phone", "comment"],
-                submitLabel: "Отправить задачу",
-              })
-            }
-            className="shrink-0 rounded-full bg-navy px-6 py-3 text-[14px] font-semibold text-white transition hover:bg-navy-2"
-          >
-            Другая задача →
-          </button>
-        </div>
+      <div className="mx-auto max-w-[1400px]">
+        <SectionHeading
+          align="left"
+          title="Что проектируем и сколько это стоит"
+          text="Цены ориентировочные — точную смету по вашему объекту присылаем за 24 часа. Без «от 1 500 ₽» и звёздочек."
+          action={
+            <button
+              onClick={() =>
+                open({
+                  intent: "services-all",
+                  title: "Не нашли свою задачу?",
+                  subtitle: "Опишите объект в двух словах — скажем, беремся ли, и сколько это стоит.",
+                  fields: ["name", "phone", "comment"],
+                  submitLabel: "Отправить задачу",
+                })
+              }
+              className="shrink-0 rounded-full bg-navy px-6 py-3 text-[14px] font-semibold text-white transition hover:bg-navy-2"
+            >
+              Другая задача →
+            </button>
+          }
+        />
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s, i) => {

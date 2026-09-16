@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { asset } from "@/lib/site";
 import { useLead } from "@/components/ui/ModalProvider";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 const plans = [
   {
@@ -46,25 +47,11 @@ export default function Pricing() {
   const { open } = useLead();
   return (
     <section id="pricing" className="relative w-full overflow-hidden bg-white px-0 py-16 md:py-24">
-      <div className="relative z-10 mb-10 px-6 text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55 }}
-          className="font-display text-[32px] font-semibold leading-[1.04] tracking-tight text-ink md:text-[48px]"
-        >
-          Три формата. Понятные цены.
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, delay: 0.1 }}
-          className="mt-4 text-sm text-muted md:text-base"
-        >
-          Оплата поэтапно по актам. Последние 10% — после положительного заключения экспертизы.
-        </motion.p>
+      <div className="relative z-10 px-4 md:px-6">
+        <SectionHeading
+          title="Три формата. Понятные цены."
+          text="Оплата поэтапно по актам. Последние 10% — после положительного заключения экспертизы."
+        />
       </div>
 
       <motion.div
@@ -72,7 +59,7 @@ export default function Pricing() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.15 }}
-        className="relative mx-3 max-w-[1440px] overflow-hidden rounded-[20px] shadow-2xl md:mx-10 lg:mx-auto"
+        className="relative mx-3 max-w-[1480px] overflow-hidden rounded-[20px] shadow-2xl md:mx-6 xl:mx-auto"
       >
         <div className="absolute inset-0 z-0">
           <img src={asset("/img/aerial.webp")} alt="Индустриальный парк с высоты" className="absolute inset-0 h-full w-full object-cover" />

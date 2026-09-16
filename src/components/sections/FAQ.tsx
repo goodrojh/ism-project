@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Plus, X, DraftingCompass, BadgeCheck, Wallet } from "lucide-react";
 import { FAQ as DATA, asset } from "@/lib/site";
 import { useLead } from "@/components/ui/ModalProvider";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 const tabs = [
   { id: "design", label: "Проектирование", icon: <DraftingCompass size={16} /> },
@@ -17,12 +18,13 @@ export default function FAQ() {
   const { open } = useLead();
 
   return (
-    <section id="faq" className="w-full bg-white px-4 py-[80px] md:px-[80px]">
-      <div className="mx-auto max-w-[780px]">
-        <div className="mb-[40px] text-center">
-          <h2 className="font-display mb-[12px] text-[30px] font-semibold leading-tight text-ink md:text-[48px]">Вопросы перед договором</h2>
-          <p className="text-[16px] text-muted">То, что спрашивают заказчики на первом звонке. Не нашли ответ — спросите ГИПа.</p>
-        </div>
+    <section id="faq" className="w-full bg-white px-4 py-[80px] md:px-6 md:py-[110px]">
+      <div className="mx-auto max-w-[900px]">
+        <SectionHeading
+          title="Вопросы перед договором"
+          text="То, что спрашивают заказчики на первом звонке. Не нашли ответ — спросите ГИПа."
+          className="!mb-8 md:!mb-10"
+        />
 
         <div className="no-scrollbar mb-[32px] flex justify-start gap-[8px] overflow-x-auto border-b border-[#efefee] md:justify-center">
           {tabs.map((tab) => (

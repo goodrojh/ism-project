@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
 import { useLead } from "@/components/ui/ModalProvider";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 const ROWS = [
   { q: "Смета и график", us: "По разделам, за 24 часа", them: "«От 1 500 ₽», после встречи" },
@@ -18,15 +19,11 @@ export default function Compare() {
   const { open } = useLead();
   return (
     <section className="w-full bg-white px-4 py-[80px] md:px-6 md:py-[110px]">
-      <div className="mx-auto max-w-5xl">
-        <div className="mb-10 text-center">
-          <h2 className="font-display text-[30px] font-semibold leading-[1.1] text-ink md:text-[44px]">
-            Чем мы отличаемся от «обычного проектного бюро»
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-[15px] text-muted md:text-lg">
-            Задайте эти семь вопросов любому подрядчику до подписания договора. Ответы многое расскажут.
-          </p>
-        </div>
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading
+          title="Чем мы отличаемся от «обычного проектного бюро»"
+          text="Задайте эти семь вопросов любому подрядчику до подписания договора. Ответы многое расскажут."
+        />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

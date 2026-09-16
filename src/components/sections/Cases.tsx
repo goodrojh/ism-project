@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Ruler, Clock, Layers, Award } from "lucide-react";
 import { CASES, asset, type CaseTag } from "@/lib/site";
 import { useLead } from "@/components/ui/ModalProvider";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 const TAGS: ("Все" | CaseTag)[] = ["Все", "Промышленные", "Жилые", "Общественные", "Сети"];
 
@@ -16,32 +17,29 @@ export default function Cases() {
     <section id="cases" className="relative w-full overflow-hidden bg-navy px-4 py-[90px] text-white blueprint-grid md:px-6 md:py-[120px]">
       <div className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-amber/15 blur-[120px]" />
       <div className="pointer-events-none absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-cyan/15 blur-[120px]" />
-      <div className="relative mx-auto max-w-7xl">
-        <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-2xl">
-            <h2 className="font-display text-[32px] font-semibold leading-[1.1] md:text-5xl">
-              340+ объектов. Вот несколько с цифрами
-            </h2>
-            <p className="mt-4 text-[16px] text-white/70 md:text-lg">
-              Не «красивые картинки», а площадь, срок и результат экспертизы по каждому. Полное портфолио с контактами
-              заказчиков — по запросу.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {TAGS.map((t) => (
-              <button
-                key={t}
-                onClick={() => setTag(t)}
-                className={
-                  "rounded-full px-4 py-2 text-[13px] font-semibold transition " +
-                  (tag === t ? "bg-amber text-navy" : "border border-white/15 bg-white/5 text-white/75 hover:bg-white/10")
-                }
-              >
-                {t}
-              </button>
-            ))}
-          </div>
-        </div>
+      <div className="relative mx-auto max-w-[1400px]">
+        <SectionHeading
+          align="left"
+          dark
+          title="340+ объектов. Вот несколько с цифрами"
+          text="Не «красивые картинки», а площадь, срок и результат экспертизы по каждому. Полное портфолио с контактами заказчиков — по запросу."
+          action={
+            <div className="flex flex-wrap gap-2">
+              {TAGS.map((t) => (
+                <button
+                  key={t}
+                  onClick={() => setTag(t)}
+                  className={
+                    "rounded-full px-4 py-2 text-[13px] font-semibold transition " +
+                    (tag === t ? "bg-amber text-navy" : "border border-white/15 bg-white/5 text-white/75 hover:bg-white/10")
+                  }
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+          }
+        />
 
         <motion.div layout className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">

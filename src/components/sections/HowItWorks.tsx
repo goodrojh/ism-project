@@ -6,6 +6,7 @@ import { MapPinned, FileText, ClipboardCheck, Layers3, ScanSearch, CalendarClock
 import type { LucideIcon } from "lucide-react";
 import { asset } from "@/lib/site";
 import { useLead } from "@/components/ui/ModalProvider";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 const containerVariants: Variants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2 } } };
 const stepVariants: Variants = {
@@ -77,7 +78,7 @@ const TIMELINE = [
 export default function HowItWorks() {
   const { open } = useLead();
   return (
-    <section id="process" className="relative w-full overflow-hidden bg-white px-4 py-[90px] md:px-12 md:py-[120px] lg:px-20">
+    <section id="process" className="relative w-full overflow-hidden bg-white px-4 py-[90px] md:px-6 md:py-[120px]">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div
           animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
@@ -91,27 +92,19 @@ export default function HowItWorks() {
         />
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-        className="relative z-10 mb-16 flex flex-col items-center gap-4 text-center"
-      >
-        <h2 className="font-display max-w-3xl text-[32px] font-semibold leading-[1.1] text-ink md:text-[48px]">
-          От пустого участка до разрешения на строительство — три этапа
-        </h2>
-        <p className="max-w-2xl text-[16px] text-muted md:text-lg">
-          Каждый этап заканчивается конкретным результатом на руках у заказчика, а не «процессом».
-        </p>
-      </motion.div>
+      <div className="relative z-10">
+        <SectionHeading
+          title="От пустого участка до разрешения на строительство — три этапа"
+          text="Каждый этап заканчивается конкретным результатом на руках у заказчика, а не «процессом»."
+        />
+      </div>
 
       <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        className="relative z-10 mx-auto mb-16 grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-3"
+        className="relative z-10 mx-auto mb-16 grid max-w-[1400px] grid-cols-1 gap-8 md:grid-cols-3"
       >
         {STEPS.map((s) => (
           <motion.div key={s.n} variants={stepVariants} className="group flex cursor-default flex-col">
@@ -152,7 +145,7 @@ export default function HowItWorks() {
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="relative z-10 mx-auto mb-12 max-w-7xl overflow-hidden rounded-[28px] bg-navy p-6 text-white blueprint-grid md:p-8"
+        className="relative z-10 mx-auto mb-12 max-w-[1400px] overflow-hidden rounded-[28px] bg-navy p-6 text-white blueprint-grid md:p-8"
       >
         <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-amber/20 blur-3xl" />
         <div className="relative grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-6">

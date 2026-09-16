@@ -5,6 +5,7 @@ import type { Variants } from "framer-motion";
 import { FileCheck2, Ruler, Check, Layers3, CalendarCheck2, AlertTriangle, ShieldCheck } from "lucide-react";
 import { asset } from "@/lib/site";
 import { useLead } from "@/components/ui/ModalProvider";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 const containerVariants: Variants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } };
 const cardVariants: Variants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } } };
@@ -24,27 +25,11 @@ export default function Features() {
       <div className="pointer-events-none absolute left-1/4 top-0 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-amber/10 blur-[120px]" />
       <div className="pointer-events-none absolute bottom-0 right-1/4 h-[400px] w-[400px] translate-y-1/2 rounded-full bg-cyan/10 blur-[100px]" />
 
-      <div className="relative z-10 mx-auto mb-14 max-w-7xl text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-display text-[32px] font-semibold leading-[1.1] text-ink md:text-5xl"
-        >
-          Проект, по которому строят, <br className="hidden md:block" />
-          а не переделывают
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mx-auto mt-5 max-w-2xl text-[16px] text-muted md:text-lg"
-        >
-          Заказчику важны три вещи: пройти экспертизу, уложиться в график стройки и не платить дважды. Мы построили процесс
-          вокруг этого.
-        </motion.p>
+      <div className="relative z-10 mx-auto max-w-[1400px]">
+        <SectionHeading
+          title="Проект, по которому строят, а не переделывают"
+          text="Заказчику важны три вещи: пройти экспертизу, уложиться в график стройки и не платить дважды. Мы построили процесс вокруг этого."
+        />
       </div>
 
       <motion.div
@@ -52,7 +37,7 @@ export default function Features() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-5 md:grid-cols-2"
+        className="relative z-10 mx-auto grid max-w-[1400px] grid-cols-1 gap-5 md:grid-cols-2"
       >
         {/* CARD 1 — full cycle */}
         <motion.div

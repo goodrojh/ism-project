@@ -27,7 +27,7 @@ export default function Expert() {
 
   return (
     <section className="w-full bg-white px-4 py-[80px] md:px-6 md:py-[110px]">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -60,7 +60,7 @@ export default function Expert() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-          <h2 className="font-display text-[30px] font-semibold leading-[1.1] text-ink md:text-[44px]">
+          <h2 className="font-display text-[32px] font-semibold leading-[1.08] tracking-[-0.01em] text-ink md:text-[46px]">
             Поговорите с инженером, а не с менеджером по продажам
           </h2>
           <p className="mt-5 text-[16px] leading-relaxed text-muted md:text-lg">
