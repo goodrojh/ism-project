@@ -1,0 +1,7 @@
+:HL["/ism-project/_next/static/chunks/01e7s-3hd323f.css","style"]
+:HL["/ism-project/_next/static/media/4e1c87b7aa9e2f2f-s.p.3o02-8iknf6dl.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/ism-project/_next/static/media/a343f882a40d2cc9-s.p.1sj6eobyi31rd.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/ism-project/_next/static/media/b59689b1142d37ce-s.p.1bk8_xp319hr4.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/ism-project/_next/static/media/d3fe2f289711ac3f-s.p.1l2zhvq5eocqf.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/ism-project/img/step2.webp","image"]
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"blog","param":null,"prefetchHints":4192,"slots":{"children":{"name":"slug","param":{"type":"d","key":"sostav-proektnoy-dokumentacii-pp87","siblings":[]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"4r4tMj0rPZp0682dm0rAX"}
