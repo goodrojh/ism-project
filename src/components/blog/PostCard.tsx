@@ -11,7 +11,7 @@ export default function PostCard({ post, compact = false }: { post: Post; compac
       className="group flex flex-col rounded-[20px] border border-black/5 bg-white p-4 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_36px_rgba(10,22,40,0.10)]"
     >
       <div className={"w-full overflow-hidden rounded-[14px] " + (compact ? "h-[170px]" : "h-[220px]")}>
-        <img src={asset(post.image)} alt={post.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <img loading="lazy" decoding="async" src={asset(post.image)} alt={post.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
       </div>
       <div className="mt-4 flex items-center gap-3 text-[12px] text-muted">
         <span className="font-semibold text-amber-dark">{post.tag}</span>

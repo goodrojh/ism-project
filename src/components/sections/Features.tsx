@@ -46,7 +46,7 @@ export default function Features() {
           className="group relative flex min-h-[460px] flex-col gap-10 overflow-hidden rounded-[32px] border border-gray-200 p-6"
         >
           <div className="absolute inset-0 z-0">
-            <img
+            <img loading="lazy" decoding="async"
               src={asset("/img/office.webp")}
               alt="Инженеры проверяют разделы проекта"
               className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"

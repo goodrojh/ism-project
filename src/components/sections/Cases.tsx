@@ -54,7 +54,7 @@ export default function Cases() {
                 className="group relative flex flex-col overflow-hidden rounded-[28px] border border-white/10 bg-white/5 backdrop-blur-sm"
               >
                 <div className="relative h-[220px] overflow-hidden">
-                  <img src={asset(c.image)} alt={c.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img loading="lazy" decoding="async" src={asset(c.image)} alt={c.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/20 to-transparent" />
                   <span className="absolute left-4 top-4 rounded-full bg-white/15 px-3 py-1 text-[11px] font-bold text-white backdrop-blur-md">{c.tag}</span>
                   <span className="absolute bottom-4 left-4 flex items-center gap-1.5 rounded-full bg-amber px-3 py-1 text-[11px] font-bold text-navy">

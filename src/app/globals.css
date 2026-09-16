@@ -86,3 +86,41 @@ body {
 input[type="range"] {
   accent-color: var(--amber);
 }
+
+/* ── Мобильная производительность ──
+   backdrop-filter и анимированные размытия — главный источник рывков на телефонах.
+   На узких экранах отключаем размытие фона (подложки остаются полупрозрачными),
+   а плавающие кнопки и шапку переводим на композитный слой. */
+@media (max-width: 767px) {
+  .backdrop-blur-sm,
+  .backdrop-blur-md,
+  .backdrop-blur-lg,
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl {
+    --tw-backdrop-blur: initial !important;
+    backdrop-filter: none !important;
+  }
+  .blur-3xl,
+  .blur-2xl,
+  .blur-\[60px\],
+  .blur-\[80px\],
+  .blur-\[100px\],
+  .blur-\[120px\] {
+    filter: blur(40px) !important;
+  }
+  .animate-marquee {
+    animation-duration: 60s;
+  }
+}
+
+.fixed {
+  transform: translateZ(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

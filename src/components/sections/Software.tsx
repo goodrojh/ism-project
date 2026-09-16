@@ -16,6 +16,8 @@ export default function Software() {
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
+    // На тач-устройствах автопрокрутка через rAF даёт рывки — оставляем ручной свайп.
+    if (window.matchMedia("(hover: none), (max-width: 767px)").matches) return;
     let id: number;
     const tick = () => {
       if (!isHovered) {

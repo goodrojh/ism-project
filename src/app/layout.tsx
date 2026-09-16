@@ -37,7 +37,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ru" className={`${manrope.variable} ${unbounded.variable}`}>
+    <html lang="ru" data-scroll-behavior="smooth" className={`${manrope.variable} ${unbounded.variable}`}>
       <body className="antialiased">
         <ModalProvider>{children}</ModalProvider>
       </body>

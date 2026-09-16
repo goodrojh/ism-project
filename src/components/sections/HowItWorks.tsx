@@ -83,12 +83,12 @@ export default function HowItWorks() {
         <motion.div
           animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -left-24 -top-24 h-96 w-96 rounded-full bg-amber/10 blur-3xl"
+          className="absolute -left-24 -top-24 hidden h-96 w-96 rounded-full bg-amber/10 blur-3xl md:block"
         />
         <motion.div
           animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-cyan/10 blur-3xl"
+          className="absolute -bottom-24 -right-24 hidden h-96 w-96 rounded-full bg-cyan/10 blur-3xl md:block"
         />
       </div>
 
@@ -109,7 +109,7 @@ export default function HowItWorks() {
         {STEPS.map((s) => (
           <motion.div key={s.n} variants={stepVariants} className="group flex cursor-default flex-col">
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
-              <img
+              <img loading="lazy" decoding="async"
                 src={asset(s.image)}
                 alt={s.alt}
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"

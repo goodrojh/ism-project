@@ -35,7 +35,7 @@ export default function Expert() {
           className="relative mx-auto w-full max-w-[420px]"
         >
           <div className="relative overflow-hidden rounded-[32px] shadow-2xl">
-            <img src={asset("/img/expert.webp")} alt="Сергей Волков, главный инженер проекта" className="aspect-[3/4] w-full object-cover" />
+            <img loading="lazy" decoding="async" src={asset("/img/expert.webp")} alt="Сергей Волков, главный инженер проекта" className="aspect-[3/4] w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent" />
             <div className="absolute bottom-5 left-5 right-5 text-white">
               <div className="font-display text-[22px] font-semibold">Сергей Волков</div>

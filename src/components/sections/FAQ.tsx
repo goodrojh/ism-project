@@ -74,7 +74,7 @@ export default function FAQ() {
 
         <div className="mt-[48px] flex flex-col items-center justify-between gap-6 rounded-[20px] bg-paper p-[24px] md:flex-row md:p-[32px]">
           <div className="flex items-center">
-            <img src={asset("/img/expert.webp")} alt="ГИП" className="h-[52px] w-[52px] rounded-full border-2 border-white object-cover shadow" />
+            <img loading="lazy" decoding="async" src={asset("/img/expert.webp")} alt="ГИП" className="h-[52px] w-[52px] rounded-full border-2 border-white object-cover shadow" />
             <div className="ml-[16px]">
               <p className="text-[15px] font-[600] text-ink">Остались вопросы?</p>
               <p className="text-[14px] text-muted">ГИП ответит по телефону за 15 минут</p>

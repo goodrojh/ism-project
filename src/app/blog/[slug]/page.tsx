@@ -5,6 +5,7 @@ import { Clock, ChevronRight, Calendar } from "lucide-react";
 import { POSTS, getPost, formatDate } from "@/lib/posts";
 import { asset } from "@/lib/site";
 import Header from "@/components/ui/Header";
+import ScrollTop from "@/components/ui/ScrollTop";
 import Footer from "@/components/sections/Footer";
 import FloatingCTA from "@/components/ui/FloatingCTA";
 import InlineLeadForm from "@/components/ui/InlineLeadForm";
@@ -39,6 +40,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
   return (
     <main className="min-h-screen bg-white">
+      <ScrollTop />
       <Header solid />
 
       {/* HERO BAND */}

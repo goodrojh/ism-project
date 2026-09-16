@@ -82,7 +82,7 @@ export default function About() {
             viewport={{ once: true }}
             className="relative overflow-hidden rounded-[32px] shadow-2xl"
           >
-            <img src={asset("/img/team.webp")} alt="Команда инженеров ИСМ Проект" className="aspect-[16/11] w-full object-cover" />
+            <img loading="lazy" decoding="async" src={asset("/img/team.webp")} alt="Команда инженеров ИСМ Проект" className="aspect-[16/11] w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-navy/70 to-transparent" />
             <div className="absolute bottom-5 left-5 right-5 flex flex-wrap gap-2">
               {["Архитекторы", "Конструкторы", "ОВ · ВК", "ЭОМ · СС", "Сметчики", "BIM-координаторы"].map((t) => (

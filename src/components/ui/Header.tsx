@@ -45,7 +45,7 @@ export default function Header({ solid = false }: { solid?: boolean }) {
         <div
           className={
             "mx-auto flex max-w-[1400px] items-center justify-between rounded-full border border-white/10 p-[8px] pl-4 backdrop-blur-xl transition-colors " +
-            (dark ? "bg-navy/85" : "bg-white/5")
+            (dark ? "bg-navy/85" : "bg-navy/70 md:bg-white/5")
           }
         >
           <a href={solid ? asset("/") : "#"} className="flex shrink-0 items-center">

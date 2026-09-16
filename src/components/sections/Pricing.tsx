@@ -62,7 +62,7 @@ export default function Pricing() {
         className="relative mx-3 max-w-[1480px] overflow-hidden rounded-[20px] shadow-2xl md:mx-6 xl:mx-auto"
       >
         <div className="absolute inset-0 z-0">
-          <img src={asset("/img/aerial.webp")} alt="Индустриальный парк с высоты" className="absolute inset-0 h-full w-full object-cover" />
+          <img loading="lazy" decoding="async" src={asset("/img/aerial.webp")} alt="Индустриальный парк с высоты" className="absolute inset-0 h-full w-full object-cover" />
           <div className="absolute inset-0 bg-navy/40" />
         </div>
 

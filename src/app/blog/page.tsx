@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import Header from "@/components/ui/Header";
+import ScrollTop from "@/components/ui/ScrollTop";
 import Footer from "@/components/sections/Footer";
 import FloatingCTA from "@/components/ui/FloatingCTA";
 import InlineLeadForm from "@/components/ui/InlineLeadForm";
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
 export default function BlogIndex() {
   return (
     <main className="min-h-screen bg-white">
+      <ScrollTop />
       <Header solid />
       <section className="relative overflow-hidden bg-navy px-4 pb-16 pt-[120px] text-white blueprint-grid md:px-6 md:pb-20 md:pt-[150px]">
         <div className="pointer-events-none absolute -right-32 top-0 h-96 w-96 rounded-full bg-amber/20 blur-[120px]" />

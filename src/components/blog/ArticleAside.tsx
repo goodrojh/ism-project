@@ -28,7 +28,7 @@ export default function ArticleAside({ toc, title }: { toc: { id: string; text: 
       <div className="relative overflow-hidden rounded-2xl bg-navy p-5 text-white blueprint-grid">
         <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-amber/30 blur-2xl" />
         <div className="relative flex items-center gap-3">
-          <img src={asset("/img/expert.webp")} alt="ГИП" className="h-12 w-12 rounded-full border-2 border-white/20 object-cover" />
+          <img loading="lazy" decoding="async" src={asset("/img/expert.webp")} alt="ГИП" className="h-12 w-12 rounded-full border-2 border-white/20 object-cover" />
           <div>
             <div className="text-[14px] font-bold">Сергей Волков</div>
             <div className="text-[12px] text-white/60">Главный инженер проекта</div>
