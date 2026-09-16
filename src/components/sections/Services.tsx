@@ -1,8 +1,10 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { Building2, Wind, Cable, MapPinned, BadgeCheck, HardHat, ArrowUpRight, Check } from "lucide-react";
+import { Building2, Wind, Cable, MapPinned, BadgeCheck, HardHat, ArrowUpRight, Check, BookOpen } from "lucide-react";
+import Link from "next/link";
 import { SERVICES } from "@/lib/site";
+import { postsForService, type ServiceId } from "@/lib/posts";
 import { useLead } from "@/components/ui/ModalProvider";
 import SectionHeading from "@/components/ui/SectionHeading";
 
@@ -38,6 +40,7 @@ export default function Services() {
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s, i) => {
             const Icon = ICONS[i];
+            const related = postsForService(s.id as ServiceId);
             return (
               <motion.div
                 key={s.id}
@@ -64,7 +67,28 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-6 flex items-center justify-between border-t border-black/5 pt-5">
+                {related.length > 0 && (
+                  <div className="mt-5 rounded-2xl bg-paper p-4">
+                    <div className="mb-2.5 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-muted">
+                      <BookOpen size={13} className="text-amber-dark" /> Полезно почитать
+                    </div>
+                    <ul className="space-y-2">
+                      {related.map((post) => (
+                        <li key={post.slug}>
+                          <Link
+                            href={`/blog/${post.slug}/`}
+                            className="group/link flex items-start gap-2 text-[13px] font-medium leading-snug text-ink transition hover:text-amber-dark"
+                          >
+                            <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-amber" />
+                            <span className="underline-offset-4 group-hover/link:underline">{post.title}</span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                <div className="mt-auto flex items-center justify-between border-t border-black/5 pt-5">
                   <div>
                     <div className="text-[11px] font-semibold uppercase tracking-wider text-muted">Стоимость</div>
                     <div className="font-display text-[17px] font-semibold text-ink">{s.price}</div>

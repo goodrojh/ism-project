@@ -3,10 +3,14 @@ import React, { useState } from "react";
 import { POSTS } from "@/lib/posts";
 import PostCard from "@/components/blog/PostCard";
 
-export default function PostGrid({ center = false }: { center?: boolean }) {
+export default function PostGrid({ center = false, initial }: { center?: boolean; initial?: number }) {
   const tags = ["Все", ...Array.from(new Set(POSTS.map((p) => p.tag)))];
   const [tag, setTag] = useState("Все");
-  const list = tag === "Все" ? POSTS : POSTS.filter((p) => p.tag === tag);
+  const [expanded, setExpanded] = useState(false);
+  const filtered = tag === "Все" ? POSTS : POSTS.filter((p) => p.tag === tag);
+  const limit = initial && !expanded ? initial : filtered.length;
+  const list = filtered.slice(0, limit);
+  const hidden = filtered.length - list.length;
   return (
     <div>
       <div className={"mb-8 flex flex-wrap gap-2 " + (center ? "justify-center" : "")}>
@@ -28,6 +32,16 @@ export default function PostGrid({ center = false }: { center?: boolean }) {
           <PostCard key={p.slug} post={p} />
         ))}
       </div>
+      {hidden > 0 && (
+        <div className="mt-8 flex justify-center">
+          <button
+            onClick={() => setExpanded(true)}
+            className="rounded-full border border-navy bg-white px-8 py-3.5 text-[15px] font-semibold text-navy transition hover:bg-navy hover:text-white"
+          >
+            Показать ещё {hidden} {hidden === 1 ? "статью" : hidden < 5 ? "статьи" : "статей"}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
