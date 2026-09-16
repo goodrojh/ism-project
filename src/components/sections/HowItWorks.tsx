@@ -120,10 +120,11 @@ export default function HowItWorks() {
               <span className="font-display text-[34px] font-semibold leading-none text-amber">{s.n}</span>
               <span className="text-[12px] font-semibold uppercase tracking-[0.12em] text-muted">{s.term}</span>
             </div>
-            <h3 className="font-display mt-3 text-2xl font-semibold leading-tight text-ink">{s.title}</h3>
+            <h3 className="font-display mt-3 text-2xl font-semibold leading-tight text-ink md:min-h-[3.6rem]">{s.title}</h3>
             <p className="mt-2 text-base leading-relaxed text-muted">{s.text}</p>
 
-            <div className="mt-5 divide-y divide-black/5 rounded-2xl border border-black/5 bg-paper">
+            <div className="mt-auto flex flex-col pt-5">
+            <div className="divide-y divide-black/5 rounded-2xl border border-black/5 bg-paper">
               {s.items.map((it) => (
                 <div key={it.t} className="flex items-start gap-3 px-4 py-3">
                   <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-amber-dark shadow-sm">
@@ -135,6 +136,7 @@ export default function HowItWorks() {
                   </div>
                 </div>
               ))}
+            </div>
             </div>
           </motion.div>
         ))}

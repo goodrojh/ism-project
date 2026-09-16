@@ -25,7 +25,7 @@ export default function PostCard({ post, compact = false }: { post: Post; compac
         {post.title}
       </h3>
       {!compact && <p className="mt-2 line-clamp-3 text-[14px] leading-[1.6] text-muted">{post.desc}</p>}
-      <span className="mt-4 inline-flex items-center gap-1.5 text-[14px] font-semibold text-ink">
+      <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-[14px] font-semibold text-ink">
         Читать <span className="text-[16px] leading-none transition-transform group-hover:translate-x-1">→</span>
       </span>
     </Link>

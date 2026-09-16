@@ -138,7 +138,7 @@ export default function Footer() {
             <div>
               <h4 className="mb-4 text-[13px] font-semibold text-white">Навигация</h4>
               <ul className="space-y-2">
-                {[...NAV, { label: "Статьи", href: asset("/blog/") }].map((n) => (
+                {NAV.map((n) => (
                   <li key={n.href}>
                     <a href={n.href.startsWith("/") ? n.href : asset("/") + n.href} className="text-[13px] text-white/60 transition-colors hover:text-white">{n.label}</a>
                   </li>

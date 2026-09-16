@@ -23,7 +23,6 @@ export default function Header({ solid = false }: { solid?: boolean }) {
   }, []);
 
   const href = (h: string) => (solid ? asset("/") + h : h);
-  const blogHref = asset("/blog/");
   const dark = solid || scrolled;
 
   const callback = () =>
@@ -64,10 +63,6 @@ export default function Header({ solid = false }: { solid?: boolean }) {
                 <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-amber transition-all group-hover:w-full" />
               </a>
             ))}
-            <a href={blogHref} className="group relative text-[14px] font-medium text-white/70 transition-colors hover:text-white">
-              Статьи
-              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-amber transition-all group-hover:w-full" />
-            </a>
           </div>
 
           <div className="flex items-center gap-2">
@@ -112,10 +107,10 @@ export default function Header({ solid = false }: { solid?: boolean }) {
               </button>
             </div>
             <nav className="mt-10 flex flex-col gap-1">
-              {[...NAV, { label: "Статьи", href: blogHref }].map((item, i) => (
+              {NAV.map((item, i) => (
                 <motion.a
                   key={item.href}
-                  href={item.href.startsWith("/") ? item.href : href(item.href)}
+                  href={href(item.href)}
                   onClick={() => setMenu(false)}
                   initial={{ x: -12, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
